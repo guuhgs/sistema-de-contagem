@@ -1,0 +1,69 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h3>Contagens</h3>
+</section>
+<!-- Main content -->
+<section class="content">
+ <div class="row">
+  	<div class="col-md-12">
+  		<div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th><center>#</center></th>
+                    <th><center>Cod. Modelo</center></th>
+                    <th><center>Data Abertura</center></th>
+                    <th><center>Hora Inicio</center></th>
+                    <th><center>Hora Fim</center></th>
+                    <th><center>Adm</center></th>
+                    <th><center>Status</center></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$info"}
+                  <tr>
+                    <th><center>{$value.id_contagem}</center></th>
+                    <th><center>{$value.cod_modelo}</center></th>
+                    <th><center>{$value.data_cont}</center></th>
+                    <th><center>{$value.hora_inicio}</center></th>
+                    <th><center>{$value.hora_fim}</center></th>
+                    <th><center>{$value.nome_usuario}</center></th>
+                    <th>
+                      <center>
+                        {if="$value.desc_status == 'Contagem Com Erro'"}
+                            <label style="color: red;">
+                              Contagem Com Erro
+                            </label>
+                          {elseif="$value.desc_status == 'Contagem Verificada'"}
+                            <label style="color: #069453">
+                              {$value.desc_status}
+                            </label>
+                          {else}
+                            {$value.desc_status}
+                          {/if}
+                      </center></th>
+                    <th>
+                      {if="$value.desc_status == 'Contagem Aberta'"}
+                        <!-- if="$idCont == '$value.id_cont1'" -->
+                    	    <a href="/iniciar-contagem/{$value.cod_modelo}/{$value.id_contagem}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Contar</a>
+                        <!-- /if -->
+                      {/if}
+                    </th>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+  </div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

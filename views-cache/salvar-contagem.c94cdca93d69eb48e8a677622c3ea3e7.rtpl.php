@@ -1,0 +1,13 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<input type="button" class="btn btn-success" value="voltar" onclick="history.go(-1)">
+</section>
+<!-- Main content -->
+<section class="content" style="text-align: center;">
+	<h3>hello world!</h3>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

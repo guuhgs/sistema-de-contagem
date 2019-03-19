@@ -1,0 +1,62 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h3>Contagens</h3>
+</section>
+<!-- Main content -->
+<section class="content">
+ <div class="row">
+  	<div class="col-md-12">
+  		<div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body no-padding">
+              <form action="/admin/gerar-planilha" method="post">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th><center>#</center></th>
+                      <th><center>Cod. Modelo</center></th>
+                      <th><center>Data Abertura</center></th>
+                      <th><center>Hora Inicio</center></th>
+                      <th><center>Hora Fim</center></th>
+                      <th><center>Adm</center></th>
+                      <th><center>Status</center></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {loop="$info"}
+                    <tr>
+                      <th><center>{$value.id_contagem}</center></th>
+                      <th><center>{$value.cod_modelo}</center></th>
+                      <th><center>{$value.data_cont}</center></th>
+                      <th><center>{$value.hora_inicio}</center></th>
+                      <th><center>{$value.hora_fim}</center></th>
+                      <th><center>{$value.nome_usuario}</center></th>
+                      <th><center>{$value.desc_status}</center></th>
+                      <th>                      
+                        {if="$value.desc_status == 'Aguardando Verificacao'"}
+                        <a href="/admin/verificar-contagem/{$value.id_contagem}" class="btn-verde btn btn-xs"><i class="fa fa-pen"></i>Verificar</a>
+                      	
+                        {elseif="$value.desc_status == 'Contagem Com Erro'"}
+                        <a href="/iniciar-recontagem/{$value.cod_modelo}/{$value.id_contagem}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Recontar</a>
+
+                        {/if}
+                        <a href="/admin/ver-contagens/{$value.id_contagem}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                      </th>
+                    </tr>
+                    {/loop}
+                  </tbody>
+                </table>
+                <br>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+  </div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
