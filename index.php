@@ -810,7 +810,7 @@ $app->post('/admin/inserir-contagem-novo', function(){
 
 	} else if(isset($cores) and $tamanhos = ""){
 
-		echo "Tem apenas cores e não tem tamanhos"
+		echo "Tem apenas cores e não tem tamanhos";
 	} else {
 
 		echo "Tem apenas tamanhos e não tem cores";
