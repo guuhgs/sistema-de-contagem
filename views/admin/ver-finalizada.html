@@ -1,0 +1,77 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <input type="button" class="btn btn-success" value="voltar" onclick="history.go(-1)">
+  <br>
+   <h3>Cod Modelo: {$cod}</h3>
+</section>
+<!-- Main content -->
+<section class="content">
+ <div class="row">
+  	<div class="col-md-12">
+  		<div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body no-padding">
+                <table class="table table-striped tabela-responsiva">
+                  <thead>
+                    <tr>
+                      <th><center>#</center></th>
+                      <th><center>Tamanho</center></th>
+                      <th><center>Cor</center></th>
+                      <th><center>Nome Contador1</center></th>
+                      <th><center>Qtde Contador1</center></th>
+                      <th><center>Nome Contador2</center></th>
+                      <th><center>Qtde Contador2</center></th>
+                      <th><center>Quantidade Correta</center></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {loop="$info"}
+                    <tr>
+                      <th><center>{$value.id_contagem}</center></th>
+                      
+                      {if="$value.tamanho_prod != ''"}
+                        <th><center>{$value.tamanho_prod}</center></th>
+                      {else}
+                        <th><center>N/D</center></th>
+                      {/if}
+
+                      {if="$value.cor_prod != ''"}
+                        <th><center>{$value.cor_prod}</center></th>
+                      {else}
+                        <th><center>N/D</center></th>
+                      {/if}
+
+                      <th><center>{$value.nome_cont1}</center></th>
+
+                      {if="$value.qtde_cont1 != $value.qtde_correta"}
+                        <th style="color: red"><center>{$value.qtde_cont1}</center></th>
+                      {else}
+                        <th><center>{$value.qtde_cont1}</center></th>
+                      {/if}
+
+                      <th><center>{$value.nome_cont2}</center></th>
+
+                      {if="$value.qtde_cont2 != $value.qtde_correta"}
+                        <th style="color: red"><center>{$value.qtde_cont2}</center></th>
+                      {else}
+                        <th><center>{$value.qtde_cont2}</center></th>
+                      {/if}
+                      
+                      <th><center>{$value.qtde_correta}</center></th>
+                    </tr>
+                    {/loop}
+                  </tbody>
+                </table>
+                <br>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  	</div>
+  </div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

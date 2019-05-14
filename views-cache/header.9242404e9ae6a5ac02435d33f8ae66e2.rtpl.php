@@ -25,6 +25,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/res/admin/dist/css/skins/skin-blue.min.css">
 
   <link rel="stylesheet" href="/res/admin/css/botao.css">
+
+  <link rel="stylesheet" href="/res/admin/css/tabela-responsiva.css">
     
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +65,7 @@ desired effect
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b></b></span>
+      <span class="logo-mini"><b>BBF</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Bebê Fofuxo</b></span>
     </a>
@@ -113,9 +115,9 @@ desired effect
           </li>
           <!-- /.messages-menu -->
 
-          <!-- Notifications Menu -->
+          <!-- Notifications Menu 
           <li style="display: none; class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
+            Menu toggle button
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
@@ -123,19 +125,20 @@ desired effect
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- Inner Menu: contains the notifications -->
+                 Inner Menu: contains the notifications
                 <ul class="menu">
-                  <li><!-- start notification -->
+                  <li> start notification
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
                     </a>
                   </li>
-                  <!-- end notification -->
+                   end notification 
                 </ul>
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
+
           <!-- Tasks Menu -->
           <li style="display: none;" class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
@@ -176,7 +179,7 @@ desired effect
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="/logout">
-              <span>Sair</span>
+              <span>SAIR</span>
             </a>
           </li>
           <!-- Control Sidebar Toggle Button 

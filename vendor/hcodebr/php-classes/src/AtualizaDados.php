@@ -29,12 +29,14 @@ class AtualizaDados{
 
 		foreach($produtos2 as $value){
 
+			$nome = utf8_decode($value['NomeProd']);
+
 			$sql->query("INSERT INTO tb_produtos 
 						 VALUES (:IDPRODUTO,:CODPROD,:NOMEPROD,:DISPONIVEL,:IMAGEM,:COR,:TAMANHO,:IDPRODUTOPAI)",
 						array(
 						':IDPRODUTO'=>$value['IDProduto'],
 						':CODPROD'=>$value['CodProd'],
-						':NOMEPROD'=>$value['NomeProd'],
+						':NOMEPROD'=>$nome,
 						':DISPONIVEL'=>$value['Disponivel'],
 						':IMAGEM'=>$value['ImagemProd'],
 						':COR'=>$value['CorProd'],
@@ -203,7 +205,7 @@ class AtualizaDados{
 				 'IDOTIXPAI'=>$dados['id_Otix_Pai'],
 				 'IDOTIXSUB'=>$dados['id_Otix_Sub'],
 				 'IDFAST'=>$dados['id_Fast']));
-}
+		}
 
 	public function atualizarDadosOtix(){
 
@@ -396,5 +398,4 @@ class AtualizaDados{
 		$sql->query("DELETE FROM tb_tamanhos");
 	}
 }
-
 ?>

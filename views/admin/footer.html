@@ -69,9 +69,7 @@
 <script src="/res/admin/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/res/admin/dist/js/app.min.js"></script>
-
-<script src="/res/admin/js/tabela.js"></script>
-
+<!-- Table to JSON plugin -->
 <script src="https://cdn.jsdelivr.net/npm/table-to-json@0.13.0/lib/jquery.tabletojson.min.js"></script>
 </body>
 </html>

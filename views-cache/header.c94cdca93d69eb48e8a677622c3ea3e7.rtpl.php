@@ -26,12 +26,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <link rel="stylesheet" href="/res/admin/css/botao.css">
 
+  <link rel="stylesheet" href="/res/admin/css/tabela-responsiva.css">
+
   <style type="text/css">
     #prod-novo:hover{
-      color: yellow;
+      color: red;
     }
-  </style>
-    
+  </style>   
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -178,7 +179,7 @@ desired effect
               <!-- The user image in the navbar
               <img src="/res/admin/dist/img/avatar5.png" class="user-image" alt="User Image">-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-             <span>Sair</span>
+             <span>SAIR</span>
             </a>
             <!-- <ul class="dropdown-menu">
               The user image in the menu
@@ -266,6 +267,7 @@ desired effect
             <li><a href="/admin/criar-contagem">Criar Contagem</a></li>
             <li><a href="/admin/ver-contagens">Ver Contagens</a></li>
             <li><a href="/admin/contagens-finalizadas">Contagens Finalizadas</a></li>
+            <li><a href="/admin/contagens-tratamento">Contagens Tratamento</a></li>
             <li><a href="/admin/produto-novo" id="prod-novo">Contar Produto Novo</a></li>
           </ul>
         </li>

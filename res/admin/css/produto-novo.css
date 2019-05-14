@@ -1,0 +1,46 @@
+.txt-prod-novo{
+  margin-top: 1rem;
+}
+.content{
+  text-align: center;
+}
+.tabela-prod-novo{
+  margin: 0 auto;
+  margin-top: 4rem;
+  border: 1px solid grey;
+  display: none;
+}
+.tabela-prod-novo th{
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: white;
+}
+.tabela-prod-novo td{
+  padding: 10px;
+  border: 1px solid grey;
+  background-color: white;
+}
+#atributos{
+  display: none;
+}
+#btn-tamanhos{
+  display: none;
+  margin-top: 10px;
+}
+#btn{
+  margin-top: 20px;
+}
+#btnContar{
+  display: none;
+  margin-top: 10px;
+}
+label{
+  font-size: 15px;
+}
+/*#contagem-produto-novo{
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 50%;
+  background-color: #fff;
+  padding: 10px;
+}*/

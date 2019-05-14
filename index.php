@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -40,7 +40,7 @@ $app->post('/login', function(){
 $app->get('/', function() {
 
 	User::verifyLogin();
-    
+
 	$page = new Page();
 	$page->setTpl("index");
 });
@@ -57,7 +57,7 @@ $app->get('/admin', function(){
 $app->get('/logout', function(){
 
 	User::logout();
-	
+
 	header('Location: /login');
 	exit;
 });
@@ -110,7 +110,7 @@ $app->post('/admin/buscar-modelo', function(){
 	$tamanhos = [];
 
 	foreach ($buscarTamanhos as $value) {
-		
+
 		array_push($tamanhos, $value['nome_tamanho']);
 	}
 
@@ -123,7 +123,7 @@ $app->post('/admin/buscar-modelo', function(){
 	if(count($infoProd) > 0){
 
 		$page = new PageAdmin();
-		
+
 		$imagem = "https://www.bebefofuxo.com.br/lojas/00020368/prod/".$infoProd['0']['imagem_prod'];
 
 		$page->setTpl('buscar-modelo',array('imagem'=>$imagem,'nome'=>$infoProd['0']['nome_prod']));
@@ -232,7 +232,7 @@ $app->get('/admin/cores-indisponiveis', function(){
 	$page = new PageAdmin();
 
 	foreach ($infoModelo as $value) {
-		
+
 		if($value['disponivel'] == 0){
 
 			array_push($indisponiveis, $value);
@@ -264,7 +264,7 @@ $app->get('/admin/tamanhos-disponiveis', function(){
 	if(isset($_SESSION['cod'])){
 
 		$cod = $_SESSION['cod'];
-	
+
 	} else {
 
 		$cod = $_POST['codModelo'];
@@ -277,9 +277,9 @@ $app->get('/admin/tamanhos-disponiveis', function(){
 		$tamanhosNovos = $_SESSION['tamanhosNovos'];
 
 			foreach ($tamanhosNovos as $value) {
-			
+
 				array_push($infoModelo, $value);
-			
+
 			}
 
 		$_SESSION['infoProd3'] = $infoModelo;
@@ -288,7 +288,7 @@ $app->get('/admin/tamanhos-disponiveis', function(){
 	$tamanhos = [];
 
 	foreach ($infoModelo as $value) {
-		
+
 		array_push($tamanhos, $value['nome_tamanho']);
 
 	}
@@ -298,11 +298,11 @@ $app->get('/admin/tamanhos-disponiveis', function(){
 	if(count($infoModelo) > 0){
 
 		$page = new PageAdmin();
-			
+
 		$imagem = "https://www.bebefofuxo.com.br/lojas/00020368/prod/".$infoModelo['0']['imagem_prod'];
 
 		$page->setTpl('tamanhos-disponiveis',array('imagem'=>$imagem,'nome'=>$infoModelo['0']['nome_prod'],'info'=>$infoModelo));
-	
+
 	} else {
 
 		header("Location: /admin/inserir-contagem");
@@ -327,7 +327,7 @@ $app->get('/admin/cores-corretas', function(){
 	if(isset($_SESSION['indisponiveis'])){
 
 		$indisponiveis = $_SESSION['indisponiveis'];
-		
+
 	} else {
 
 		$indisponiveis = $_SESSION['infoProd'];
@@ -348,7 +348,7 @@ $app->get('/admin/cores-corretas', function(){
 		$disponiveis = [];
 
 		foreach ($infoModelo as $value) {
-			
+
 			if($value['disponivel'] == 1){
 
 				array_push($disponiveis, $value);
@@ -357,7 +357,7 @@ $app->get('/admin/cores-corretas', function(){
 	}
 
 	foreach($indisponiveis as $value){
-		
+
 		if(isset($_GET['checkIndisponivel'.$value['nome_cor']])){
 
 			$value['disponivel'] = 2;
@@ -407,7 +407,7 @@ $app->get('/admin/cores-corretas/:nome_cor/delete', function($nome_cor){
 	$coresNovas = $_SESSION['cores-novas'];
 
 	foreach ($coresNovas as $value) {
-			
+
 		if($value == $nome_cor){
 
 
@@ -438,11 +438,29 @@ $app->get('/admin/ver-contagens/:id_contagem/delete', function($idContagem){
 	exit;
 });
 
+$app->get('/admin/contagens-finalizadas/:id_contagem/delete', function($idContagem){
+
+	$contagem = new Contagem();
+	$contagem->excluirContagem($idContagem);
+
+	header('Location: /admin/contagens-finalizadas');
+	exit;
+});
+
+$app->get('/admin/contagens-tratamento/:id_contagem/delete', function($idContagem){
+
+	$contagem = new Contagem();
+	$contagem->excluirContagem($idContagem);
+
+	header('Location: /admin/contagens-tratamento');
+	exit;
+});
+
 $app->get('/admin/users/:id_usuario/delete', function($id_usuario){
 
 	User::verifyLogin();
 	User::verifyADM();
-	
+
 	$user = new User();
 	$user->get((int)$id_usuario);
 	$user->delete();
@@ -494,7 +512,7 @@ $app->post('/admin/tamanhos-novos', function(){
 
 		$email = [];
 	}
-	
+
 	array_push($email, $tamanhosNovos);
 
 	$_SESSION['email'] = $email;
@@ -513,10 +531,10 @@ $app->post('/admin/tamanhos-novos', function(){
 	$tamanhos = $_SESSION['tamanhos'];
 
 	foreach ($tamanhosNovos as $value) {
-		
+
 		if($value !== ""){
 
-			for ($i=0; $i<count($tamanhosNovos); $i++) { 
+			for ($i=0; $i<count($tamanhosNovos); $i++) {
 
 				$tamanho_novo = array(
 						'id_produto'=>NULL,
@@ -526,7 +544,7 @@ $app->post('/admin/tamanhos-novos', function(){
 						'imagem_prod'=>'bbfofuxo.jpg',
 						'nome_cor'=>NULL,
 						'nome_tamanho'=>$value
-						);	
+						);
 			}
 
 			array_push($tamanhos, $value);
@@ -547,12 +565,12 @@ $app->get('/admin/users/:id_usuario', function($id_usuario){
 
 	User::verifyLogin();
 	User::verifyADM();
-	
+
 	$user = new User();
 	$user->get((int)$id_usuario);
-	
+
 	$page = new PageAdmin();
-	
+
 	$page->setTpl('users-update', array(
 		'user'=>$user->getValues()
 	));
@@ -604,7 +622,7 @@ $app->post('/admin/cores-novas', function(){
 	$cores = $_SESSION['cores'];
 
 	foreach ($coresNovas as $value) {
-		
+
 		if($value !== ""){
 
 			if(count($tamanhos) > 0){
@@ -617,7 +635,7 @@ $app->post('/admin/cores-novas', function(){
 						'imagem_prod'=>'bbfofuxo.jpg',
 						'nome_cor'=>$value,
 						'nome_tamanho'=>$tamanhos[0]
-						); 
+						);
 
 					array_push($cores, $value);
 
@@ -641,8 +659,8 @@ $app->post('/admin/cores-novas', function(){
 
 			} else {
 
-				for ($i=0; $i<count($cores) ; $i++){ 
-					
+				for ($i=0; $i<count($cores) ; $i++){
+
 					$cor_nova = array(
 						'id_produto'=>NULL,
 						'cod_prod'=>$infoProd[0]['cod_prod'],
@@ -650,9 +668,9 @@ $app->post('/admin/cores-novas', function(){
 						'disponivel'=>2,
 						'imagem_prod'=>'bbfofuxo.jpg',
 						'nome_cor'=>$cores[$i],
-						);	
-				}				
-			}	
+						);
+				}
+			}
 		}
 	}
 
@@ -680,15 +698,15 @@ $app->post('/admin/users/create', function(){
 
 	User::verifyLogin();
 	User::verifyADM();
-	
+
 	$user = new User();
-	
+
 	$_POST['inadmin'] = (isset($_POST['inadmin']))?1:2;
 	$_POST['senha_usuario'] = password_hash($_POST['senha_usuario'], PASSWORD_DEFAULT);
-	
+
 	$user->setData($_POST);
 	$user->save();
-	
+
 	header("Location: /admin/users");
 	exit;
 });
@@ -720,17 +738,17 @@ $app->post('/admin/atualizar-dados', function(){
 	$sql = new Sql();
 	$ad = new AtualizaDados();
 
-	//$ad->deletarTamanhos($sql);
-	//$ad->atualizarTamanhos($sql);
+	$ad->deletarTamanhos($sql);
+	$ad->atualizarTamanhos($sql);
 
-	//$ad->deletarCores($sql);
-	//$ad->atualizarCores($sql);
+	$ad->deletarCores($sql);
+	$ad->atualizarCores($sql);
 
 	$ad->deletarDadosFast($sql);
 	$ad->atualizarDadosFast();
 
-	//$ad->deletarDadosOtix($sql);
-	//$ad->atualizarDadosOtix();
+	$ad->deletarDadosOtix($sql);
+	$ad->atualizarDadosOtix();
 
 	header('Location: /admin/dados-atualizados');
 	exit;
@@ -757,11 +775,11 @@ $app->get('/admin/inserir-contagem', function(){
 
 		$tamanhos = [];
 	}
-	
+
 	$b = new BuscarModelo();
 
 	$info = $b->buscarModeloCont($cod, $cores, $tamanhos);
-	
+
 	$infoUser = $_SESSION['User'];
 
 	$c = new Contagem();
@@ -770,6 +788,33 @@ $app->get('/admin/inserir-contagem', function(){
 
 	header("Location: /admin/ver-contagens");
 	exit;
+});
+
+$app->post('/admin/inserir-contagem-novo', function(){
+
+	User::verifyLogin();
+	User::verifyADM();
+
+	if(isset($_POST['cores'])){
+
+		$cores = $_POST['cores'];
+	}
+
+	if(isset($_POST['tamanhos'])){
+
+		$tamanhos = $_POST['tamanhos'];
+	}
+
+	if(isset($cores) and isset($tamanhos)){
+
+
+	} else if(isset($cores) and $tamanhos = ""){
+
+		echo "Tem apenas cores e não tem tamanhos"
+	} else {
+
+		echo "Tem apenas tamanhos e não tem cores";
+	}
 });
 
 $app->get('/iniciar-contagem/:cod/:idContagem', function($cod, $idContagem){
@@ -792,7 +837,7 @@ $app->get('/iniciar-contagem/:cod/:idContagem', function($cod, $idContagem){
 	$tdsVazias = [];
 	$qtds = [];
 
-	for ($i=0; $i<$v; $i++){ 
+	for ($i=0; $i<$v; $i++){
 
 		$valores = array(
 					"id"=>$tabela[$i]['id'],
@@ -829,7 +874,7 @@ $app->get('/iniciar-recontagem/:cod/:idContagem', function($cod, $idContagem){
 	$tdsVazias = [];
 	$qtds = [];
 
-	for ($i=0; $i<$v; $i++){ 
+	for ($i=0; $i<$v; $i++){
 
 		$valores = array(
 					"id"=>$tabela[$i]['id'],
@@ -867,6 +912,7 @@ $app->post('/salvar-contagem/:idContagem', function($idContagem){
 $app->post('/salvar-recontagem/:idContagem', function($idContagem){
 
 	User::verifyLogin();
+	User::verifyADM();
 
 	$tabela = $_POST['dados'];
 
@@ -876,7 +922,9 @@ $app->post('/salvar-recontagem/:idContagem', function($idContagem){
 
 	$idProds = $c->buscarId($tabela,$idContagem);
 
-	$c->salvarContagem($idProds, $idContagem, $idContador);
+	$c->salvarRecontagem($idProds, $idContagem, $idContador);
+
+	$status = $c->verificarContagem($idContagem);
 
 	header('Location: /admin/ver-contagens');
 	exit;
@@ -904,10 +952,77 @@ $app->post('/admin/gerar-planilha', function(){
 
 	$c->gerarExcel();
 
-	sleep(10);
+});
 
-	header('Location: /admin/contagens-finalizadas');
+$app->get('/admin/contagens-tratamento', function(){
+
+	User::verifyLogin();
+	User::verifyADM();
+
+	$c = new Contagem();
+	$info = $c->buscarContagensTratamento();
+
+	$page = new PageAdmin();
+	$page->setTpl('contagens-tratamento', array("info"=>$info));
+
+});
+
+$app->get('/admin/detalhes/:idContagem', function($idContagem){
+
+	User::verifyLogin();
+	User::verifyADM();
+
+	$sql = new Sql();
+
+	$codigo = $sql->select("SELECT cod_modelo FROM tb_contagens WHERE id_contagem = $idContagem");
+
+	$cod = $codigo[0]['cod_modelo'];
+
+	if(isset($cod)){
+
+		$c = new Contagem();
+
+		$info = $c->buscarDetalhes($idContagem,$cod);
+	}
+
+	$page = new PageAdmin();
+	$page->setTpl('detalhes', array('info'=>$info));
+});
+
+$app->post('/admin/finalizar-tratamento', function(){
+
+	User::verifyLogin();
+	User::verifyADM();
+
+	$sql = new Sql();
+
+	foreach($_POST as $key => $value){
+
+		$sql->query("UPDATE tb_contagens
+					  		 SET status_contagem = 3
+					  		 WHERE id_contagem = $key");
+	}
+
+	header('Location: /admin/contagens-tratamento');
 	exit;
+});
+
+$app->get('/admin/ver-finalizada/:idContagem', function($idContagem){
+
+	User::verifyLogin();
+	User::verifyADM();
+
+	$c = new Contagem();
+
+	$sql = new Sql();
+
+	$cod = $sql->select("SELECT cod_modelo FROM tb_contagens WHERE id_contagem = $idContagem");
+
+	$info = $c->verContagemFinalizada($idContagem);
+
+	$page = new PageAdmin();
+
+	$page->setTpl('ver-finalizada', array('info'=>$info,'cod'=>$cod[0]['cod_modelo']));
 });
 
 $app->run();

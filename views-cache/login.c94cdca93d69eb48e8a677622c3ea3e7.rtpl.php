@@ -17,8 +17,6 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="/res/admin/plugins/iCheck/square/blue.css">
 
-  <link rel="stylesheet" href="/res/admin/dist/css/meu-css.css">
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -26,7 +24,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition login-page">
+<body background="#3c8dbc" class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
     <a href="/res/admin/index2.html">Sistema de Contagem</a>
@@ -61,7 +59,7 @@
     </form>
 
     <div class="social-auth-links text-center">
-      <p>- Ou -</p>
+      <p style="display:none;">- Ou -</p>
       <a style="display:none;" href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Logar usando o
         Facebook</a>
       <a style="display:none;" href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Logar usando o
@@ -69,10 +67,8 @@
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="#">Esqueci minha senha</a><br>
+    <!-- <a href="#">Esqueci minha senha</a><br> -->
     <a style="display:none;" href="register.html" class="text-center">Register a new membership</a>
-
-    <label id="#lbl-erro-login" class="invisivel" id="lbl-erro-login" style="margin-top: 20px; color: red;"> Usuário inexistente ou senha inválida! </label>
 
   </div>
   <!-- /.login-box-body -->

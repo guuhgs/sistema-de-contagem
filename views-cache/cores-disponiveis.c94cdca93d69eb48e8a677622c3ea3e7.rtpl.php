@@ -2,9 +2,7 @@
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
-
 	<input type="button" class="btn btn-success" value="voltar" onclick="history.go(-2)">
-		
 </section>
 <!-- Main content -->
 <section class="content" style="text-align: center;">

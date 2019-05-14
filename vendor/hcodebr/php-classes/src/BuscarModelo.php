@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Hcode;
 
@@ -9,12 +9,12 @@ class BuscarModelo{
 	function buscar($codModelo){
 
 		$sql = new Sql();
-	
+
 		$result = $sql->select("SELECT p.id_produto, p.cod_prod, p.nome_prod, p.disponivel, p.imagem_prod, c.nome_cor, t.nome_tamanho, p.id_prodpai
-								FROM tb_produtos AS p 
-								INNER JOIN tb_cores AS c 
-								ON p.id_cor = c.id_cor 
-								INNER JOIN tb_tamanhos AS t 
+								FROM tb_produtos AS p
+								INNER JOIN tb_cores AS c
+								ON p.id_cor = c.id_cor
+								INNER JOIN tb_tamanhos AS t
 								ON p.id_tamanho = t.id_tamanho
 								WHERE p.cod_prod = $codModelo
 								GROUP BY p.id_cor");
@@ -28,9 +28,9 @@ class BuscarModelo{
 		} else {
 
 			$result2 = $sql->select("SELECT p.id_produto, p.cod_prod, p.nome_prod, p.disponivel, p.imagem_prod, c.nome_cor, p.id_prodpai
-									FROM tb_produtos AS p 
-									INNER JOIN tb_cores AS c 
-									ON p.id_cor = c.id_cor 
+									FROM tb_produtos AS p
+									INNER JOIN tb_cores AS c
+									ON p.id_cor = c.id_cor
 									WHERE p.cod_prod = $codModelo
 									GROUP BY p.imagem_prod");
 
@@ -40,9 +40,9 @@ class BuscarModelo{
 		if(count($filtrado) == 0){
 
 			$result3 = $sql->select("SELECT p.id_produto, p.cod_prod, p.nome_prod, p.disponivel, p.imagem_prod, t.nome_tamanho, p.id_prodpai
-									FROM tb_produtos AS p 
-									INNER JOIN tb_tamanhos AS t 
-									ON p.id_tamanho = t.id_tamanho 
+									FROM tb_produtos AS p
+									INNER JOIN tb_tamanhos AS t
+									ON p.id_tamanho = t.id_tamanho
 									WHERE p.cod_prod = $codModelo");
 
 			$filtrado = $result3;
@@ -56,8 +56,8 @@ class BuscarModelo{
 		$sql = new Sql();
 
 		$result = $sql->select("SELECT p.id_produto, p.cod_prod, p.nome_prod, p.disponivel, p.imagem_prod, t.nome_tamanho, p.id_prodpai
-								FROM tb_produtos AS p 
-								INNER JOIN tb_tamanhos AS t 
+								FROM tb_produtos AS p
+								INNER JOIN tb_tamanhos AS t
 								ON p.id_tamanho = t.id_tamanho
 								WHERE p.cod_prod = $cod
 								group by p.id_tamanho");
@@ -82,13 +82,13 @@ class BuscarModelo{
 				$cor = $value;
 
 				$result = $sql->select("SELECT p.id_produto, p.cod_prod, c.nome_cor, t.nome_tamanho
-									  FROM tb_produtos as p
-									  INNER JOIN tb_cores as c
-									  ON p.id_cor = c.id_cor
-									  INNER JOIN tb_tamanhos as t
-									  ON p.id_tamanho = t.id_tamanho
-									  WHERE p.cod_prod = $cod
-									  AND c.nome_cor = '$cor'");
+															  FROM tb_produtos as p
+															  INNER JOIN tb_cores as c
+															  ON p.id_cor = c.id_cor
+															  INNER JOIN tb_tamanhos as t
+															  ON p.id_tamanho = t.id_tamanho
+															  WHERE p.cod_prod = $cod
+															  AND c.nome_cor = '$cor'");
 
 					if(count($result) > 0){
 
@@ -96,8 +96,8 @@ class BuscarModelo{
 
 					} else {
 
-						for ($i=0; $i<count($tamanhos); $i++) { 
-							
+						for ($i=0; $i<count($tamanhos); $i++) {
+
 							$corNova = array(
 								'id_produto'=>NULL,
 								'cod_prod'=>$cod,
@@ -107,12 +107,12 @@ class BuscarModelo{
 								);
 
 							array_push($info[0], $corNova);
-					}		
+					}
 				}
 			}
 
 			foreach ($tamanhos as $value){
-				
+
 				$tamanho = $value;
 
 				$result = $sql->select("SELECT p.id_produto, p.cod_prod, c.nome_cor, t.nome_tamanho
@@ -126,8 +126,8 @@ class BuscarModelo{
 
 				if(count($result) == 0){
 
-					for ($i=0; $i<count($cores); $i++) { 
-							
+					for ($i=0; $i<count($cores); $i++) {
+
 							$tamanhoNovo = array(
 								'id_produto'=>NULL,
 								'cod_prod'=>$cod,
@@ -165,8 +165,8 @@ class BuscarModelo{
 								'tamanho_novo'=>1
 								);
 
-					array_push($info[0], $novo);	
-				}				
+					array_push($info[0], $novo);
+				}
 			}
 		} else {
 
@@ -184,7 +184,7 @@ class BuscarModelo{
 				if(count($result) > 0){
 
 					array_push($info, $result);
-				
+
 				} else {
 
 					$novo = array(
@@ -193,7 +193,7 @@ class BuscarModelo{
 								'nome_cor'=>$cor,
 								);
 
-					array_push($info[0], $novo);	
+					array_push($info[0], $novo);
 				}
 			}
 		}
@@ -206,11 +206,11 @@ class BuscarModelo{
 		$sql = new Sql();
 
 		$ids = [];
-		
+
 		foreach($cores as $cor){
 
 			foreach ($tamanhos as $tamanho) {
-				
+
 				$idProd = $sql->select("SELECT id_produto FROM tb_contsub
 									WHERE cor_prod = '$cor'
 									AND tamanho_prod = '$tamanho'
@@ -221,7 +221,7 @@ class BuscarModelo{
 		}
 
 		return $ids;
-	}		
-}	
+	}
+}
 
 ?>
